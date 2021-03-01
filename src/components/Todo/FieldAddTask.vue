@@ -1,8 +1,8 @@
 <template>
     <v-text-field
       v-model="newTaskTitle"
-      @click:append="addTask"
-      @keyup.enter="addTask"
+      @click:append="addTodo"
+      @keyup.enter="addTodo"
       class="pa-3"
       outlined
       label="Add Task"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name : 'FieldAddTask',
@@ -23,9 +23,9 @@ export default {
     }
   }, 
   methods: {
-    ...mapMutations(['addTodo']),
-    addTask() {
-      this.addTodo(this.newTaskTitle);
+    ...mapActions(['addTask']),
+    addTodo() {
+      this.addTask(this.newTaskTitle);
       this.newTaskTitle = '';
     }      
   }      

@@ -35,13 +35,14 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
     name: 'Task',
     props: ['task'],
     methods: {
-        ...mapMutations(['doneTask', 'deleteTask'])
+        ...mapMutations(['doneTask']),
+        ...mapActions(['deleteTask'])
     }    
 }
 </script>
