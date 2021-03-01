@@ -21,7 +21,7 @@
       <v-list-item  
         @click="doneTask(task.id)"
         :class="{ 'blue lighten-5' : task.done}"
-      >
+      > 
         <template v-slot:default>
           <v-list-item-action>
             <v-checkbox
@@ -37,7 +37,7 @@
           <v-list-item-action>
             <v-btn
               icon
-              @click.stop="deleteTask(task.id)">
+              @click.stop="deleteTask(task.id)">            
               <v-icon color="primary lighten-1">mdi-delete</v-icon>
             </v-btn>
           </v-list-item-action>          
@@ -60,54 +60,27 @@
 
 <script>
 // @ is an alias to /src
-
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'Todo',
   components: {
     
   },
+  computed: {
+    ...mapState(['tasks'])
+  },
   data() {
     return {
-      newTaskTitle: '',
-      tasks:  [
-        {
-          id: 1,
-          title: 'Wake Up',
-          done: false
-        },
-        {
-          id: 2,
-          title: 'Get bananas',
-          done: false
-        },
-        {
-          id: 3,
-          title: 'Eat bananas',
-          done: false
-        }                
-      ]
+      newTaskTitle: ''
     }
   },
   methods: {
+    ...mapMutations(['addTodo', 'doneTask', 'deleteTask']),
     addTask() {
-      let newTask = {
-        id: Date.now(),
-        title: this.newTaskTitle,
-        done: false
-      };
-
-      this.tasks.push(newTask);
+      this.addTodo(this.newTaskTitle);
+      console.log('Adding task')
       this.newTaskTitle = '';
-    },
-    doneTask(id) {
-      let task = this.tasks.filter(tsk => tsk.id === id)[0];
-
-      task.done = !task.done;
-
-    },
-    deleteTask(id) {
-      this.tasks = this.tasks.filter(tsk => tsk.id !== id);
     }
   }
 }
