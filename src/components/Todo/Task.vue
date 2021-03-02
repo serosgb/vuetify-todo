@@ -22,7 +22,7 @@
                     </v-list-item-content>
 
                     <v-list-item-action>
-                        <v-btn icon @click.stop="deleteTask(task.id)">
+                        <v-btn icon @click.stop="dialogs.delete = true">
                             <v-icon color="primary lighten-1"
                                 >mdi-delete</v-icon
                             >
@@ -30,23 +30,33 @@
                     </v-list-item-action>
                 </template>
             </v-list-item>
+            
             <v-divider></v-divider>
+
+            <dialog-delete v-if="dialogs.delete" @close="dialogs.delete = false" :task="task"/>
         </div>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations } from 'vuex';
+import DialogDelete from '@/components/Todo/Dialogs/DialogDelete';
 
 export default {
     name: 'Task',
+    components: {
+        DialogDelete
+    },
     props: ['task'],
+    data() {
+        return{
+            dialogs: {
+                delete: false
+            }
+        }
+    },
     methods: {
-        ...mapMutations(['doneTask']),
-        ...mapActions(['deleteTask'])
+        ...mapMutations(['doneTask'])
     }    
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
