@@ -1,62 +1,48 @@
 <template>
-        <div >
-            <v-list-item
-                @click="doneTask(task.id)"
-                :class="{ 'blue lighten-5': task.done }"
-            >
-                <template v-slot:default>
-                    <v-list-item-action>
-                        <v-checkbox
-                            :input-value="task.done"
-                            color="primary"
-                        ></v-checkbox>
-                    </v-list-item-action>
+    <div>
+        <v-list-item
+            @click="doneTask(task.id)"
+            :class="{ 'blue lighten-5': task.done }"
+        >
+            <template v-slot:default>
+                <v-list-item-action>
+                    <v-checkbox
+                        :input-value="task.done"
+                        color="primary"
+                    ></v-checkbox>
+                </v-list-item-action>
 
-                    <v-list-item-content>
-                        <v-list-item-title
-                            :class="{
-                                'text-decoration-line-through': task.done,
-                            }"
-                            >{{ task.title }}</v-list-item-title
-                        >
-                    </v-list-item-content>
+                <v-list-item-content>
+                    <v-list-item-title
+                        :class="{
+                            'text-decoration-line-through': task.done,
+                        }"
+                        >{{ task.title }}</v-list-item-title
+                    >
+                </v-list-item-content>
 
-                    <v-list-item-action>
-                        <v-btn icon @click.stop="dialogs.delete = true">
-                            <v-icon color="primary lighten-1"
-                                >mdi-delete</v-icon
-                            >
-                        </v-btn>
-                    </v-list-item-action>
-                </template>
-            </v-list-item>
-            
-            <v-divider></v-divider>
+                <v-list-item-action>
+                    <task-menu :task="task" />
+                </v-list-item-action>
+            </template>
+        </v-list-item>
 
-            <dialog-delete v-if="dialogs.delete" @close="dialogs.delete = false" :task="task"/>
-        </div>
+        <v-divider></v-divider>
+    </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
-import DialogDelete from '@/components/Todo/Dialogs/DialogDelete';
+import TaskMenu from '@/components/Todo/TaskMenu';
 
 export default {
     name: 'Task',
     components: {
-        DialogDelete
+        TaskMenu,
     },
     props: ['task'],
-    data() {
-        return{
-            dialogs: {
-                delete: false
-            }
-        }
-    },
     methods: {
-        ...mapMutations(['doneTask'])
-    }    
-}
+        ...mapMutations(['doneTask']),
+    },
+};
 </script>
-
