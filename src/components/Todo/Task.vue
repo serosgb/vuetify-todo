@@ -21,6 +21,13 @@
                     >
                 </v-list-item-content>
 
+                <v-list-item-action v-if="task.dueDate" >
+                    <v-list-item-action-text>
+                        <v-icon small>mdi-calendar</v-icon>
+                        {{ task.dueDate | niceDate }}
+                    </v-list-item-action-text>
+                </v-list-item-action>
+
                 <v-list-item-action>
                     <task-menu :task="task" />
                 </v-list-item-action>
@@ -32,6 +39,7 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
 import { mapMutations } from 'vuex';
 import TaskMenu from '@/components/Todo/TaskMenu';
 
@@ -41,6 +49,11 @@ export default {
         TaskMenu,
     },
     props: ['task'],
+    filters: {
+        niceDate(value) {
+            return format(new Date(value), 'MMM dd, yyyy')
+        }
+    },
     methods: {
         ...mapMutations(['doneTask']),
     },
