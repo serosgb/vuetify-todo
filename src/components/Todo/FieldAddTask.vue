@@ -1,15 +1,23 @@
 <template>
     <v-text-field
       v-model="newTaskTitle"
-      @click:append="addTodo"
       @keyup.enter="addTodo"
       class="pa-3"
       outlined
       label="Add Task"
-      append-icon="mdi-plus"
       hide-details
       clearable
-    ></v-text-field>
+    >
+    <template v-slot:append>
+      <v-fade-transition leave-absolute>
+        <v-icon
+          @click="addTodo"
+          color="primary"
+          :disabled="taskTitleInvalid"
+          >mdi-plus</v-icon>
+      </v-fade-transition>
+    </template>    
+    </v-text-field>
 </template>
 
 <script>
@@ -21,12 +29,19 @@ export default {
     return {
       newTaskTitle: ''
     }
-  }, 
+  },   
+  computed: {
+      taskTitleInvalid() {
+          return !this.newTaskTitle || (this.newTaskTitle.trim().length === 0)
+      }
+  },
   methods: {
     ...mapActions(['addTask']),
     addTodo() {
-      this.addTask(this.newTaskTitle);
-      this.newTaskTitle = '';
+      if (!this.taskTitleInvalid) {
+        this.addTask(this.newTaskTitle);
+        this.newTaskTitle = '';
+      }
     }      
   }      
 }

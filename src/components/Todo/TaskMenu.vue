@@ -19,21 +19,25 @@
             </v-list>
         </v-menu>
         <dialog-delete v-if="dialogs.delete" @close="dialogs.delete = false" :task="task"/>
+        <dialog-edit v-if="dialogs.edit" @close="dialogs.edit = false" :task="task"/>
     </div>
 </template>
 
 <script>
+import DialogEdit from '@/components/Todo/Dialogs/DialogEdit';
 import DialogDelete from '@/components/Todo/Dialogs/DialogDelete';
 
 export default {
     name: 'TaskMenu',
     components: {
-        DialogDelete,
+        DialogEdit,
+        DialogDelete
     },
     props: ['task'],
     data() {
         return {
             dialogs: {
+                edit: false,
                 delete: false
             },            
             items: [
@@ -41,7 +45,7 @@ export default {
                     title: 'Edit',
                     icon: 'mdi-pencil',
                     click(){
-                        console.log('Click on edit')
+                        this.dialogs.edit = true;
                     }
                 },
                 { 
