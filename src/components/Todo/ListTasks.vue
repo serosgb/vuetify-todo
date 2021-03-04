@@ -1,14 +1,14 @@
 <template>
     <v-list  flat class="pt-0">
         <task
-          v-for="task in tasks"
+          v-for="task in tasksFiltered"
           :key="task.id"
           :task="task" />
     </v-list>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import Task from '@/components/Todo/Task';
 
 export default {
@@ -17,7 +17,7 @@ export default {
         Task
     },
     computed: {
-        ...mapState(['tasks'])
+        ...mapGetters(['tasksFiltered'])
     },
 
 }

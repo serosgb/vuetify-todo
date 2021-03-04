@@ -26,26 +26,25 @@ export default {
     props: ['task'],
     data() {
         return {
-            date: null
-        }
+            date: null,
+        };
     },
     methods: {
-        ...mapActions(['updateTaskDueDate']),        
+        ...mapActions(['updateTaskDueDate']),
         saveTask() {
             let payload = {
                 id: this.task.id,
-                dueDate: this.date
-            }
+                dueDate: this.date,
+            };
             this.updateTaskDueDate(payload);
-            this.$emit('close')
-        }
+            this.$emit('close');
+        },
     },
     mounted() {
         if (this.task.dueDate) {
             this.date = this.task.dueDate;
         }
-    }
-
+    },
 };
 </script>
 
