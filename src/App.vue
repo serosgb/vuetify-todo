@@ -31,8 +31,15 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        
-        <v-app-bar app color="primary" dark src="mountains.jpg" prominent>
+
+        <v-app-bar
+            app
+            color="primary"
+            dark
+            src="mountains.jpg"
+            prominent
+            height="170"
+        >
             <template v-slot:img="{ props }">
                 <v-img
                     v-bind="props"
@@ -41,14 +48,21 @@
             </template>
 
             <v-container class="pq-12">
-              <v-row>
-                <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-                <v-spacer></v-spacer>
-                <search />
-              </v-row>
-              <v-row>
-                <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
-              </v-row>
+                <v-row>
+                    <v-app-bar-nav-icon
+                        @click="drawer = !drawer"
+                    ></v-app-bar-nav-icon>
+                    <v-spacer></v-spacer>
+                    <search />
+                </v-row>
+                <v-row>
+                    <v-app-bar-title class="text-h4 ml-4">
+                        Vuetify Todo
+                    </v-app-bar-title>
+                </v-row>
+                <v-row>
+                    <live-date-time />
+                </v-row>
             </v-container>
         </v-app-bar>
 
@@ -62,12 +76,14 @@
 <script>
 import Snackbar from '@/components/Shared/Snackbar';
 import Search from '@/components/Tools/Search';
+import LiveDateTime from '@/components/Tools/LiveDateTime';
 
 export default {
     name: 'App',
     components: {
         Snackbar,
         Search,
+        LiveDateTime
     },
     data: () => ({
         drawer: null,
