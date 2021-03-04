@@ -1,6 +1,6 @@
 <template>
   <div class="about pa-6">
-    <h1>About Vuetiy Todo</h1>
+    <h1>About {{ $store.state.appTitle }}</h1>
    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex et accusantium numquam eaque recusandae nulla accusamus explicabo soluta? Asperiores modi dolorum tenetur saepe aliquam, perspiciatis minus consequuntur ea nostrum fuga.</p>
    <p>Necessitatibus praesentium quidem sequi voluptatum, expedita sunt corrupti autem perspiciatis, aut similique et maiores odio tempore ex tempora non recusandae. Eligendi earum esse aspernatur adipisci vero accusamus praesentium fugit voluptates.</p>
    <p>Atque ab laboriosam quod sint facilis velit maiores eaque alias in, nostrum tempora nisi unde suscipit itaque vero consectetur excepturi aspernatur? Aliquam magnam optio architecto ducimus modi! Quis, amet molestias.</p>

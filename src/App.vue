@@ -65,7 +65,7 @@
                 </v-row>
                 <v-row>
                     <v-app-bar-title class="text-h4 ml-4">
-                        Vuetify Todo
+                        {{ $store.state.appTitle }}
                     </v-app-bar-title>
                 </v-row>
                 <v-row>
@@ -99,7 +99,7 @@ export default {
             { title: 'Todo', icon: 'mdi-format-list-checks', to: '/' },
             { title: 'About', icon: 'mdi-help-box', to: '/about' },
         ],
-    }),
+    })
 };
 </script>
 
