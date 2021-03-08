@@ -36,7 +36,8 @@ export default new Vuex.Store({
     snackbar: {
       show: false,
       message: ''
-    }
+    },
+    sorting: false
   },
   mutations: {
     addTask(state, newTaskTitle) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     updateTaskDueDate(state, payload) {
       let task = state.tasks.filter(tsk => tsk.id === payload.id)[0];
       task.dueDate = payload.dueDate;
+    },
+    setTasks(state, value) {
+      state.tasks = value
     },
     doneTask(state, id) {
       let task = state.tasks.filter(tsk => tsk.id === id)[0];
@@ -80,6 +84,9 @@ export default new Vuex.Store({
     },
     setSearch(state, value) {
       state.search = value;
+    },
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
     }
   },
   actions: {
