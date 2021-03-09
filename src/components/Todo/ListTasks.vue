@@ -30,7 +30,7 @@ export default {
                 return this.tasksFiltered
             },
             set(value){
-                this.$store.commit('setTasks', value)
+                this.$store.dispatch('setTasks', value)
             }
         }
     }

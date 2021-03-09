@@ -38,7 +38,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['updateTask']),
+        ...mapActions(['updateTaskTitle']),
         saveTask() {
             if (!this.taskTitleInvalid) {
                 let payload = {
@@ -46,7 +46,7 @@ export default {
                     title: this.taskTitle
                 };
 
-                this.updateTask(payload);
+                this.updateTaskTitle(payload);
                 this.$emit('close')
             }
         }     

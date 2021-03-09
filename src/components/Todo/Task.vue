@@ -52,7 +52,7 @@
 
 <script>
 import { format } from 'date-fns';
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import TaskMenu from '@/components/Todo/TaskMenu';
 
 export default {
@@ -63,11 +63,13 @@ export default {
     props: ['task'],
     filters: {
         niceDate(value) {
-            return format(new Date(value), 'MMM dd, yyyy')
+            let parts = value.split('-');
+            let dateValue = new Date(parts[0], parts[1] - 1, parts[2])
+            return format(dateValue, 'MMM dd, yyyy')
         }
     },
     methods: {
-        ...mapMutations(['doneTask']),
+        ...mapActions(['doneTask']),
     },
 };
 </script>
