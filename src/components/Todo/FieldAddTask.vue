@@ -2,9 +2,9 @@
     <v-text-field
       v-model="newTaskTitle"
       @keyup.enter="addTodo"
-      class="pa-3"
+      class="field-add-task pa-3"
       outlined
-      label="Add Task"
+      placeholder="Add Task"
       hide-details
       clearable
     >
@@ -12,7 +12,6 @@
       <v-fade-transition leave-absolute>
         <v-icon
           @click="addTodo"
-          color="primary"
           :disabled="taskTitleInvalid"
           >mdi-plus</v-icon>
       </v-fade-transition>
@@ -47,6 +46,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+  .field-add-task.v-input--is-focused
+    .v-input__slot
+      background: rgba(19, 82, 123, .5) !important
+
+</style>>
 
 </style>

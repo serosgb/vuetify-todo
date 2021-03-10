@@ -13,32 +13,7 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     search: null,
-    tasks:  [
-/*       {
-        id: 1,
-        title: 'Wake Up',
-        done: false,
-        dueDate: '2021-03-05'
-      },
-      {
-        id: 2,
-        title: 'Get bananas',
-        done: false,
-        dueDate: '2021-03-15'
-      },
-      {
-        id: 3,
-        title: 'Eat bananas',
-        done: false,
-        dueDate: null
-      },
-      {
-        id: 4,
-        title: 'Shopping more bananas',
-        done: false,
-        dueDate: '2021-03-27'
-      } */
-    ],
+    tasks:  [],
     snackbar: {
       show: false,
       message: ''

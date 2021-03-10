@@ -4,8 +4,8 @@
             <v-img
             class="pa-4 pt-7"
             src="mountains.jpg"
-            height="170"
-            gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+            :height="dynamicDrawerHeight"
+            gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
             >
                 <v-avatar size="70" class="mb-2">
                 <img
@@ -46,12 +46,12 @@
             dark
             src="mountains.jpg"
             prominent
-            height="170"
+            :height="dynamicDrawerHeight"
         >
             <template v-slot:img="{ props }">
                 <v-img
                     v-bind="props"
-                    gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+                    gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.9)"
                 ></v-img>
             </template>
 
@@ -71,6 +71,9 @@
                 <v-row>
                     <live-date-time />
                 </v-row>
+                <v-row v-if="displaySearchField">
+                    <field-add-task />
+                </v-row>
             </v-container>
         </v-app-bar>
 
@@ -85,13 +88,23 @@
 import Snackbar from '@/components/Shared/Snackbar';
 import Search from '@/components/Tools/Search';
 import LiveDateTime from '@/components/Tools/LiveDateTime';
+import FieldAddTask from '@/components/Todo/FieldAddTask';
 
 export default {
     name: 'App',
     components: {
         Snackbar,
         Search,
-        LiveDateTime
+        LiveDateTime,
+        'field-add-task': FieldAddTask   
+    },
+    computed: {
+        displaySearchField() {
+            return this.$route.path === '/';
+        },
+        dynamicDrawerHeight() {
+            return(this.displaySearchField ? 236 : 170)
+        }
     },
     data: () => ({
         drawer: null,

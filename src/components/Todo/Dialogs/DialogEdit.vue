@@ -48,6 +48,7 @@ export default {
 
                 this.updateTaskTitle(payload);
                 this.$emit('close')
+                this.$vuetify.goTo(0, {duration: 0})
             }
         }     
     },
@@ -57,3 +58,8 @@ export default {
 
 };
 </script>
+
+<style lang="sass">
+    div.v-snack:not(.v-snack--absolute)
+        height: 100%
+</style>
